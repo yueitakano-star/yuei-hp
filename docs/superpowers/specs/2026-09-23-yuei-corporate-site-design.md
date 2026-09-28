@@ -1,7 +1,7 @@
 # 遊栄JAPAN コーポレートサイト 設計書
 
 - 作成日: 2026-09-23
-- リポジトリ: https://github.com/rocken318/yuei-hp
+- リポジトリ: https://github.com/yueitakano-star/yuei-hp（2026-09-28 に rocken318/yuei-hp から移行）
 - ステータス: 設計承認済み（実装計画待ち）
 
 ## 0. スコープ

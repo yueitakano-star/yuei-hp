@@ -2,12 +2,12 @@
 // URLs / sitemap / JSON-LD pointing at the fallback vercel.app domain.
 if (process.env.VERCEL_ENV === "production" && !process.env.NEXT_PUBLIC_SITE_URL?.trim()) {
   console.warn(
-    "lib/site: NEXT_PUBLIC_SITE_URL is not set in production; falling back to https://yuei-hp.vercel.app for canonical URLs.",
+    "lib/site: NEXT_PUBLIC_SITE_URL is not set in production; falling back to https://yuei-hp-navy.vercel.app for canonical URLs.",
   );
 }
 
 /** Public origin of the site (no trailing slash). Override with NEXT_PUBLIC_SITE_URL. */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://yuei-hp.vercel.app").replace(/\/+$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://yuei-hp-navy.vercel.app").replace(/\/+$/, "");
 
 /** Short site name (og:site_name, title template suffix). */
 export const SITE_NAME = "遊栄JAPAN";
