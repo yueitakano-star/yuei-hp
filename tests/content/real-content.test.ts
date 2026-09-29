@@ -10,7 +10,7 @@ describe("content/ の実データ", () => {
   });
   it("拠点数が設計どおり", async () => {
     expect((await content.getVenues("nightlife")).map((v) => v.slug)).toEqual(["kingyo", "b-club", "c-girl"]);
-    expect((await content.getVenues("dining")).map((v) => v.slug)).toEqual(["en", "danke"]);
+    expect((await content.getVenues("dining")).map((v) => v.slug)).toEqual(["en", "danke", "tachinomi-danke"]);
     expect((await content.getVenues("signage")).map((v) => v.slug)).toEqual(["chimatsushima", "peace", "eiraku", "bansui"]);
   });
   it("全事業に heroImage があり、public/ に実在する", async () => {
@@ -40,10 +40,12 @@ describe("content/ の実データ", () => {
     }
   });
   it("写真がある店舗には heroImage と gallery がある", async () => {
+    // 写真の提供待ちの店舗（「写真準備中」表示）。写真を追加したらここから外す。
+    const photosPending = new Set(["tachinomi-danke"]);
     const stores = [
       ...(await content.getVenues("nightlife")),
       ...(await content.getVenues("dining")),
-    ];
+    ].filter((v) => !photosPending.has(v.slug));
     for (const v of stores) {
       expect(v.heroImage, v.slug).toBeDefined();
       expect(v.gallery.length, v.slug).toBeGreaterThan(0);
