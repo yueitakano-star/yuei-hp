@@ -10,7 +10,7 @@ describe("content/ の実データ", () => {
   });
   it("拠点数が設計どおり", async () => {
     expect((await content.getVenues("nightlife")).map((v) => v.slug)).toEqual(["kingyo", "b-club", "c-girl"]);
-    expect((await content.getVenues("dining")).map((v) => v.slug)).toEqual(["en", "danke"]);
+    expect((await content.getVenues("dining")).map((v) => v.slug)).toEqual(["en", "danke", "tachinomi-danke"]);
     expect((await content.getVenues("signage")).map((v) => v.slug)).toEqual(["chimatsushima", "peace", "eiraku", "bansui"]);
   });
   it("全事業に heroImage があり、public/ に実在する", async () => {

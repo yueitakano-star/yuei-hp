@@ -46,7 +46,7 @@ async function scrollToBottom(page: Page) {
 
 test("content lists match the expected route set", () => {
   expect(BUSINESSES).toHaveLength(4);
-  expect(VENUES).toHaveLength(9);
+  expect(VENUES).toHaveLength(10);
   expect(NEWS).toContain("2026-09-24-site-open");
 });
 
