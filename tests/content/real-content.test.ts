@@ -71,7 +71,8 @@ describe("content/ の実データ", () => {
     for (const business of ["nightlife", "dining", "signage"] as const) {
       for (const v of await content.getVenues(business)) {
         const parts = titleParts(v.name, v.titleDisplay);
-        expect(Math.max(...parts.map((p) => [...p].length)), parts.join("|")).toBeLessThanOrEqual(7);
+        // A part's trailing space renders as a gap outside it (TitleLines).
+        expect(Math.max(...parts.map((p) => [...p.trimEnd()].length)), parts.join("|")).toBeLessThanOrEqual(7);
       }
     }
   });
