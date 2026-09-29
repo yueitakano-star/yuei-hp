@@ -3,6 +3,7 @@ import { Zen_Kaku_Gothic_New, Space_Grotesk } from "next/font/google";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteAnalytics } from "@/components/analytics/site-analytics";
 import { OG_BASE } from "@/lib/seo/metadata";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SiteFooter />
         </SmoothScroll>
       </body>
+      <SiteAnalytics />
     </html>
   );
 }

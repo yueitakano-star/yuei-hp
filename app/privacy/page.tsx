@@ -55,6 +55,22 @@ const CLAUSES: Clause[] = [
     ),
   },
   {
+    title: "Cookie等の利用とアクセス解析",
+    body: (
+      <>
+        <p>
+          当社は、本サイトの利用状況を把握し、内容の改善に役立てるため、Google LLC が提供するアクセス解析ツール「Googleアナリティクス」を利用しています。Googleアナリティクスは Cookie を利用して、閲覧されたページ、滞在時間、参照元などの情報を収集します。収集される情報に、氏名・住所・メールアドレスなど個人を特定する情報は含まれません。
+        </p>
+        <p className="mt-4">
+          収集された情報は Google 社のプライバシーポリシーに基づいて管理されます。詳細は<a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener" className={linkClass}>Google プライバシーポリシー<span className="sr-only">（新しいタブで開きます）</span></a>をご確認ください。
+        </p>
+        <p className="mt-4">
+          アクセス解析による情報の収集を希望されない場合は、お使いのブラウザで Cookie を無効にするか、Google が提供する<a href="https://tools.google.com/dlpage/gaoptout?hl=ja" target="_blank" rel="noopener" className={linkClass}>Googleアナリティクス オプトアウト アドオン<span className="sr-only">（新しいタブで開きます）</span></a>を利用することで停止できます。
+        </p>
+      </>
+    ),
+  },
+  {
     title: "安全管理",
     body: (
       <p>
