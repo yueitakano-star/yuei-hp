@@ -31,7 +31,7 @@ pnpm typecheck && pnpm lint && pnpm test && pnpm build && pnpm e2e
 
 Vercel の本番環境（Production）に公開する前に確認する。
 
-- [ ] `NEXT_PUBLIC_SITE_URL` を本番ドメインに設定（未設定だと canonical / sitemap / JSON-LD が `https://yuei-hp.vercel.app` を指す。ビルド時に警告が出る）
+- [x] `NEXT_PUBLIC_SITE_URL` を本番ドメインに設定（2026-09-29 に `https://yuei-japan.com` を設定済み。未設定だと canonical / sitemap / JSON-LD が `https://yuei-hp.vercel.app` を指す。ビルド時に警告が出る）
 - [ ] お問い合わせメール: `RESEND_API_KEY` / `CONTACT_TO` / `CONTACT_FROM` の 3 つをすべて設定（どれか欠けるとフォームは「準備中」表示のまま）
   - [ ] 送信元ドメインを Resend でドメイン認証（SPF / DKIM）し、`CONTACT_FROM` はそのドメインのアドレスにする（`onboarding@resend.dev` はアカウント所有者にしか届かない）
   - [ ] 本番でテスト送信し、`CONTACT_TO` に届くことを確認
@@ -55,3 +55,4 @@ pnpm assets:adopt <briefId> <vN>         # 生成済みバージョンを採用�
 - [`AGENTS.md`](./AGENTS.md) — Claude / Codex 共通の開発規約
 - [`docs/superpowers/specs`](./docs/superpowers/specs) — 設計書
 - [`docs/superpowers/plans`](./docs/superpowers/plans) — 実装計画
+- [`docs/seo.md`](./docs/seo.md) — SEO・アクセス解析の設定状況と残タスク
