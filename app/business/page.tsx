@@ -9,7 +9,7 @@ import { BusinessCta } from "@/components/sections/business/business-cta";
 export const metadata: Metadata = pageMetadata({
   title: "事業紹介",
   description:
-    "ナイトエンターテインメント・飲食・デジタルサイネージ・Web開発。仙台・国分町を拠点に遊栄JAPANが展開する4つの事業をご紹介します。",
+    "Web・広告制作、デジタルサイネージ、飲食、ナイトエンターテインメント。仙台を拠点に遊栄JAPANが展開する4つの事業をご紹介します。",
   path: "/business",
 });
 
@@ -35,7 +35,7 @@ export default async function BusinessIndexPage() {
             <span className="inline-block">街に価値を。</span>
           </>
         }
-        lead="夜の街のにぎわいから、食卓のひととき、街頭のビジョン、そしてWebまで。国分町を拠点に、人と街をつなぐ4つの事業を展開しています。"
+        lead="Webと広告物の制作から、街頭のビジョン、食卓のひととき、夜のにぎわいまで。仙台を拠点に、人と街をつなぐ4つの事業を展開しています。"
         image={{ src: "/images/generated/business-hero.webp", alt: "並んだ4つのガラスのキューブ" }}
         breadcrumbs={CRUMBS}
       />

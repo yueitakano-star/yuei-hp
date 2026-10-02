@@ -14,7 +14,7 @@ import { AboutCta } from "@/components/sections/about/about-cta";
 export const metadata: Metadata = pageMetadata({
   title: "会社概要",
   description:
-    "遊栄Japan株式会社の企業理念と会社概要。仙台・国分町を拠点に、ナイトエンターテインメント・飲食・デジタルサイネージ・Web開発を展開しています。",
+    "遊栄Japan株式会社の企業理念と会社概要。仙台を拠点に、Web・広告制作、デジタルサイネージ、飲食、ナイトエンターテインメントを展開しています。",
   path: "/about",
 });
 
@@ -36,7 +36,7 @@ export default async function AboutPage() {
             <span className="inline-block">次の価値へ。</span>
           </>
         }
-        lead="仙台・国分町を拠点に、飲食、エンターテインメント、デジタルサイネージ、そしてWebへ。領域を越えて、この街に新しい価値を届けています。"
+        lead="仙台を拠点に、Web・広告制作、デジタルサイネージ、飲食、そしてエンターテインメントへ。領域を越えて、この街に新しい価値を届けています。"
         image={{ src: "/images/generated/about-hero.webp", alt: "朝霧に包まれた仙台の街並み" }}
         breadcrumbs={CRUMBS}
       />

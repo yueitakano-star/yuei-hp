@@ -8,6 +8,7 @@ import { ArrowRight, CodeXml, Mail, MonitorPlay } from "lucide-react";
 import { Reveal } from "@/components/effects/reveal";
 import { useGated, useMotionActive } from "@/lib/effects/hooks";
 import { useStableScroll } from "@/lib/effects/stable-scroll";
+import { keyakiUrl } from "@/lib/keyaki";
 import { SectionEyebrow } from "./section-eyebrow";
 
 const CONTACT_ENTRIES = [
@@ -96,6 +97,17 @@ export function Cta() {
               <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                 ご相談の内容に合わせてお選びください。
               </p>
+              {keyakiUrl() && (
+                <a
+                  href={keyakiUrl()}
+                  target="_blank"
+                  rel="noopener"
+                  className="group mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue"
+                >
+                  Web・広告制作は「ケヤキクリエイト」へ
+                  <ArrowRight aria-hidden className="size-4 transition-transform group-hover:translate-x-1" />
+                </a>
+              )}
             </div>
             <ul className="grid gap-3 sm:grid-cols-3">
               {CONTACT_ENTRIES.map(({ type, label, note, Icon }) => (

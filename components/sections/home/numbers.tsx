@@ -32,7 +32,7 @@ export function Numbers({ businessCount, storeCount, signageCount }: Props) {
               数字で見る遊栄JAPAN
             </h2>
           </div>
-          <p className="text-sm leading-relaxed text-ink-muted">国分町を拠点に、領域を越えて。</p>
+          <p className="text-sm leading-relaxed text-ink-muted">仙台を拠点に、領域を越えて。</p>
         </Reveal>
 
         <dl className="mt-12 grid grid-cols-3 md:mt-16">

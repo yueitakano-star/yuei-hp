@@ -102,9 +102,9 @@ export function Hero() {
               id="hero-heading"
               className="mt-4 text-[2.5rem] font-bold leading-[1.2] text-ink md:text-7xl md:leading-[1.15]"
             >
-              街の夜に、
+              仙台から、
               <br />
-              新しい価値を。
+              つくる。伝える。
             </h1>
             <motion.div style={{ opacity: leadOpacity }}>
               <motion.p
@@ -114,7 +114,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: delay.follow, duration: duration.slow, ease: ease.out }}
               >
-                国分町から、飲食・エンターテインメント・デジタルサイネージ・Webへ。
+                Web・広告制作、デジタルサイネージ、飲食、エンターテインメントへ。仙台から、領域を越えて。
               </motion.p>
             </motion.div>
           </motion.div>

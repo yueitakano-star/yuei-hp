@@ -12,6 +12,7 @@ import { BusinessCta, type BusinessCtaAction } from "@/components/sections/busin
 import { FlowTimeline } from "@/components/sections/business/flow-timeline";
 import { ServiceGrid } from "@/components/sections/business/service-grid";
 import { titleParts } from "@/components/sections/business/title-parts";
+import { keyakiUrl } from "@/lib/keyaki";
 
 // Only the four businesses exist; anything else is a 404.
 export const dynamicParams = false;
@@ -60,9 +61,12 @@ const CTA: Record<BusinessSlug, { eyebrow: string; title: string; body: string; 
   },
   digital: {
     eyebrow: "CONTACT",
-    title: "Webサイト・映像の制作をご検討の方へ",
+    title: "Webサイト・広告物の制作をご検討の方へ",
     body: "まだ内容が固まっていない段階でも構いません。目的やお悩みを伺いながら、最適な進め方をご提案します。",
-    actions: [{ href: "/contact?type=web", label: "制作のご相談" }],
+    actions: [
+      { href: "/contact?type=web", label: "制作のご相談" },
+      ...(keyakiUrl() ? [{ href: keyakiUrl()!, label: "ケヤキクリエイトを見る", external: true }] : []),
+    ],
   },
 };
 
