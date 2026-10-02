@@ -10,7 +10,7 @@ export const contentType = "image/png";
 
 const NAME = "遊栄Japan株式会社";
 const NAME_EN = "YUEI JAPAN Inc.";
-const TAGLINE = "「国分町の夜から、街の未来へ。」";
+const TAGLINE = "「仙台から、街と企業の未来へ。」";
 
 type Font = { name: string; data: ArrayBuffer; weight: 500 | 700; style: "normal" };
 

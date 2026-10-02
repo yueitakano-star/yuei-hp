@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { SITE_NAME } from "@/lib/site";
 
-export const OG_IMAGE_ALT = "遊栄Japan株式会社 — 国分町の夜から、街の未来へ。";
+export const OG_IMAGE_ALT = "遊栄Japan株式会社 — 仙台から、街と企業の未来へ。";
 
 /**
  * The site-wide share image (app/opengraph-image.tsx). A page that sets its

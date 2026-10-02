@@ -4,7 +4,7 @@ import { Reveal } from "@/components/effects/reveal";
 import { SectionEyebrow } from "@/components/sections/home/section-eyebrow";
 import { cn } from "@/lib/utils";
 
-export type BusinessCtaAction = { href: string; label: string };
+export type BusinessCtaAction = { href: string; label: string; /** Opens in a new tab (off-site link). */ external?: boolean };
 
 type Props = {
   /** Latin label above the heading (e.g. "CONTACT"). */
@@ -53,6 +53,7 @@ export function BusinessCta({ eyebrow, title, body, actions, className }: Props)
                   <li key={a.href}>
                     <Link
                       href={a.href}
+                      {...(a.external ? { target: "_blank", rel: "noopener" } : {})}
                       className={cn(
                         "group flex items-center justify-between gap-6 rounded-full px-7 py-4 text-sm font-bold transition-[color,background-color,border-color,transform] duration-hover ease-brand-out active:scale-[0.98] md:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-sky md:text-base",
                         i === 0

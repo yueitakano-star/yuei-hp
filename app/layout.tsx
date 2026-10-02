@@ -20,7 +20,7 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: "遊栄Japan株式会社", template: `%s | ${SITE_NAME}` },
-  description: "仙台・国分町を拠点に、ナイトエンターテインメント・飲食・デジタルサイネージ・Web開発を展開する遊栄Japan株式会社のコーポレートサイト。",
+  description: "仙台を拠点に、Web・広告制作、デジタルサイネージ、飲食、ナイトエンターテインメントを展開する遊栄Japan株式会社のコーポレートサイト。",
   // Pages set their own openGraph (url, canonical) via pageMetadata(); this
   // is the fallback (e.g. 404). The share image comes from opengraph-image.tsx.
   openGraph: { ...OG_BASE },

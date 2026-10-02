@@ -2,9 +2,9 @@ import { segmentLines } from "@/lib/effects/word-reveal";
 import { MessageStage } from "./message-stage";
 
 const MESSAGE = [
-  "国分町の夜から、街の未来へ。",
+  "仙台から、街と企業の未来へ。",
   "人が集い、語らい、笑顔になる場所を。",
-  "飲食、エンターテインメント、デジタルサイネージ、そしてWeb。",
+  "Web・広告制作、デジタルサイネージ、飲食、そしてエンターテインメント。",
   "私たちは領域を越えて、この街に新しい価値を届けます。",
 ].join("\n");
 
