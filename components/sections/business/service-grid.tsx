@@ -5,8 +5,8 @@ import { pad2 } from "@/lib/utils";
 
 type Service = { title: string; body: string };
 
-/** Icons in content order (site, system, video/signage, operations). */
-const ICONS: LucideIcon[] = [LayoutTemplate, Workflow, Clapperboard, LifeBuoy];
+/** Icons in content order (site, video/print ads, system, operations). */
+const ICONS: LucideIcon[] = [LayoutTemplate, Clapperboard, Workflow, LifeBuoy];
 
 /**
  * Digital business: the service list as numbered icon cards (one column on

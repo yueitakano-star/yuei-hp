@@ -6,7 +6,14 @@ import { titleParts } from "@/components/sections/business/title-parts";
 
 describe("content/ の実データ", () => {
   it("4事業すべてが存在する", async () => {
-    expect((await content.getBusinesses()).map((b) => b.slug)).toEqual(["nightlife", "dining", "signage", "digital"]);
+    expect((await content.getBusinesses()).map((b) => b.slug)).toEqual(["digital", "signage", "dining", "nightlife"]);
+  });
+  it("Web・広告制作事業は先頭で、ケヤキクリエイトのブランドを持つ", async () => {
+    const [first] = await content.getBusinesses();
+    expect(first.slug).toBe("digital");
+    expect(first.name).toBe("Web・広告制作事業");
+    expect(first.brand).toBe("ケヤキクリエイト");
+    expect(first.brandEn).toBe("KEYAKI CREATE");
   });
   it("拠点数が設計どおり", async () => {
     expect((await content.getVenues("nightlife")).map((v) => v.slug)).toEqual(["kingyo", "b-club", "c-girl"]);
@@ -58,7 +65,7 @@ describe("content/ の実データ", () => {
     expect(company.address).toBe("宮城県仙台市青葉区国分町2丁目8番30号 NJビル5階");
     const businesses = await content.getBusinesses();
     expect(company.businessSummary).toEqual(businesses.map((b) => b.name));
-    expect(company.philosophy?.title).toBe("国分町の夜から、街の未来へ。");
+    expect(company.philosophy?.title).toBe("仙台から、街と企業の未来へ。");
     expect(company.greeting?.draft).toBe(true);
   });
   it("大見出しの改行単位（titleParts）は最長10文字以内（320px の画面に収まる）", async () => {
@@ -85,9 +92,9 @@ describe("content/ の実データ", () => {
   it("digital にはサービス4件と制作フロー5ステップがある", async () => {
     const digital = await content.getBusiness("digital");
     expect(digital?.services?.map((s) => s.title)).toEqual([
-      "Webサイト制作",
-      "Webシステム開発",
-      "映像・サイネージコンテンツ制作",
+      "ホームページ制作",
+      "動画・静止画の広告物",
+      "Webシステム・AI活用",
       "運用・改善サポート",
     ]);
     expect(digital?.flow?.map((f) => f.title)).toEqual([
