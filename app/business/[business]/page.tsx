@@ -10,6 +10,7 @@ import { VenueSwipeList } from "@/components/page/venue-swipe-list";
 import { SectionEyebrow } from "@/components/sections/home/section-eyebrow";
 import { BusinessCta, type BusinessCtaAction } from "@/components/sections/business/business-cta";
 import { FlowTimeline } from "@/components/sections/business/flow-timeline";
+import { SignagePricing } from "@/components/sections/business/signage-pricing";
 import { ServiceGrid } from "@/components/sections/business/service-grid";
 import { titleParts } from "@/components/sections/business/title-parts";
 import { keyakiUrl } from "@/lib/keyaki";
@@ -119,6 +120,7 @@ export default async function BusinessPage({ params }: PageProps<"/business/[bus
         </section>
       )}
 
+      {business.pricing && <SignagePricing pricing={business.pricing} basePath={path} />}
       {business.services && <ServiceGrid services={business.services} />}
       {business.flow && <FlowTimeline steps={business.flow} />}
 
