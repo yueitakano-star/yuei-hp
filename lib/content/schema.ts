@@ -27,6 +27,23 @@ export const BusinessSchema = z
     flow: z
       .array(z.object({ step: z.string().optional(), title: z.string().min(1), body: z.string().min(1) }))
       .optional(),
+    /** Ad slot price list (used by signage). Prices are tax-included yen. */
+    pricing: z
+      .object({
+        /** Total sellable slots and the playback loop they imply. */
+        slots: z.number().int().positive(),
+        seconds: z.number().int().positive(),
+        plans: z.array(
+          z.object({
+            venue: z.string().regex(/^[a-z0-9-]+$/),
+            name: z.string().min(1),
+            price: z.number().int().positive(),
+            resolution: z.string().min(1),
+          }),
+        ),
+        bundle: z.object({ venues: z.array(z.string().min(1)).min(2), price: z.number().int().positive() }).optional(),
+      })
+      .optional(),
     /**
      * The displayed title (`brand ?? name`) with "|" at the allowed line breaks
      * of big headings; each part stays on one line (see titleParts).
