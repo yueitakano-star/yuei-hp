@@ -10,7 +10,7 @@ import { VenueSwipeList } from "@/components/page/venue-swipe-list";
 import { SectionEyebrow } from "@/components/sections/home/section-eyebrow";
 import { BusinessCta, type BusinessCtaAction } from "@/components/sections/business/business-cta";
 import { FlowTimeline } from "@/components/sections/business/flow-timeline";
-import { LedAppeal } from "@/components/sections/business/led-appeal";
+import { VisionPortal } from "@/components/sections/business/vision-portal";
 import { SignagePricing } from "@/components/sections/business/signage-pricing";
 import { ServiceGrid } from "@/components/sections/business/service-grid";
 import { titleParts } from "@/components/sections/business/title-parts";
@@ -96,7 +96,7 @@ export default async function BusinessPage({ params }: PageProps<"/business/[bus
 
       <Intro business={business} />
 
-      {business.pricing && <LedAppeal pricing={business.pricing} />}
+      {business.pricing && <VisionPortal pricing={business.pricing} photo="/images/source/signage/peace.webp" />}
 
       {venues.length > 0 && (
         <section data-testid="venues" aria-labelledby="venues-heading" className="bg-surface-muted py-24 md:py-36">
