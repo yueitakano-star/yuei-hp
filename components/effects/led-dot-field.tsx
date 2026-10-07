@@ -2,38 +2,31 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { cubicBezier, useMotionValueEvent, useReducedMotion } from "motion/react";
+import { cubicBezier, useReducedMotion } from "motion/react";
 import { ease, duration } from "@/lib/motion";
-import { useStableScroll } from "@/lib/effects/stable-scroll";
 import { coverRect, dotRadius, gridSpec, luma, pointerBoost, rippleBoost, sweepLevel } from "@/lib/effects/led-grid";
 
 type Props = { src: string; className?: string };
 
 const out = cubicBezier(...ease.out);
-const smooth = (a: number, b: number, n: number) => {
-  const t = Math.min(1, Math.max(0, (n - a) / (b - a)));
-  return t * t * (3 - 2 * t);
-};
 
 /**
  * A photo drawn as an LED panel: round dots whose size follows the picture's
- * brightness. On load the light sweeps across once; the pointer swells the dots
- * under it, a tap sends a ring outwards (the touch counterpart of hover).
- * Scrolling the hero away closes the dots up and the sharp photo takes over.
+ * brightness. On load the light sweeps across once, holds for a beat, then the
+ * dots close up and the sharp photo takes over, all on a timer, so it plays
+ * out in full whether or not the visitor scrolls. Afterwards the dots come back
+ * only where the pointer is, and a tap sends a ring outwards (the touch
+ * counterpart of hover).
  *
- * Nothing runs continuously: a frame is drawn only for the one-off sweep, a
- * ripple, or when the pointer / scroll position changes. Under reduced motion
- * the sharp photo is shown and no canvas is drawn. Fills its positioned parent.
+ * Nothing runs continuously: frames are drawn for that one timeline, for a
+ * ripple, and when the pointer moves. Under reduced motion the sharp photo is
+ * shown and no canvas is drawn. Fills its positioned parent.
  */
 export function LedDotField({ src, className }: Props) {
   const reduced = useReducedMotion();
   const rootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const photoRef = useRef<HTMLImageElement>(null);
-  const progress = useStableScroll(rootRef, ["start start", "end start"]);
-  const scheduleRef = useRef<() => void>(() => {});
-
-  useMotionValueEvent(progress, "change", () => scheduleRef.current());
 
   useEffect(() => {
     const root = rootRef.current;
@@ -53,6 +46,10 @@ export function LedDotField({ src, className }: Props) {
 
     const sky = getComputedStyle(document.documentElement).getPropertyValue("--color-brand-sky").trim() || "white";
     const life = duration.slow;
+    // Timeline from the first frame: sweep, hold, resolve into the photo.
+    const sweepEnd = duration.slow;
+    const resolveStart = duration.slow + duration.base;
+    const resolveEnd = resolveStart + duration.slow;
     let raf = 0;
     let disposed = false;
     let grid = gridSpec(1, 1, 14);
@@ -81,16 +78,17 @@ export function LedDotField({ src, className }: Props) {
     const draw = (now: number) => {
       raf = 0;
       if (disposed || !colors) return;
-      const mix = smooth(0.08, 0.62, progress.get());
-      photo.style.opacity = String(mix);
-      canvas.style.opacity = String(1 - mix);
-      if (mix >= 1) return;
-
       if (startedAt === null) startedAt = now;
-      sweep = out(Math.min(1, (now - startedAt) / 1000 / duration.slow));
+      const t = (now - startedAt) / 1000;
+      sweep = out(Math.min(1, t / sweepEnd));
+      const mix = out(Math.min(1, Math.max(0, (t - resolveStart) / (resolveEnd - resolveStart))));
+      photo.style.opacity = String(mix);
+      if (mix >= 1) root.dataset.ledResolved = "true";
       ripples = ripples.filter((r) => (now - r.at) / 1000 < life);
 
       ctx.clearRect(0, 0, width, height);
+      // Once resolved, dots exist only under the pointer or a ripple.
+      if (mix >= 1 && !pointer && ripples.length === 0) return;
       const { cols, rows, cell } = grid;
       const radius = cell * 9;
       for (let r = 0; r < rows; r++) {
@@ -103,7 +101,7 @@ export function LedDotField({ src, className }: Props) {
             boost = Math.max(boost, rippleBoost(Math.hypot(x - rp.x, y - rp.y), (now - rp.at) / 1000, life, cell * 40, cell * 3));
           }
           const lit = sweepLevel(c, cols, sweep);
-          const rad = dotRadius(cell, luma(colors[i], colors[i + 1], colors[i + 2]), lit, boost, mix);
+          const rad = dotRadius(cell, luma(colors[i], colors[i + 1], colors[i + 2]), lit, boost, mix * (1 - Math.min(1, boost * 1.6)));
           if (rad < 0.3) continue;
           if (lit < 0.02) {
             ctx.globalAlpha = 0.28;
@@ -120,13 +118,12 @@ export function LedDotField({ src, className }: Props) {
       }
       ctx.globalAlpha = 1;
       // The sweep and ripples are finite; keep drawing only while one is still moving.
-      if (sweep < 1 || ripples.length > 0) schedule();
+      if (t < resolveEnd || ripples.length > 0) schedule();
     };
 
     const schedule = () => {
       if (!raf && !disposed) raf = requestAnimationFrame(draw);
     };
-    scheduleRef.current = schedule;
 
     const resize = () => {
       const rect = root.getBoundingClientRect();
@@ -166,6 +163,9 @@ export function LedDotField({ src, className }: Props) {
       schedule();
       root.dataset.ledMode = "dots";
     };
+    // If the photo never loads, leave the (empty) navy field rather than a dead canvas.
+    const onError = () => { photo.style.opacity = "1"; };
+    photo.addEventListener("error", onError, { once: true });
     if (photo.complete && photo.naturalWidth) onLoad();
     else photo.addEventListener("load", onLoad, { once: true });
     document.addEventListener("pointermove", onMove, { passive: true });
@@ -177,11 +177,11 @@ export function LedDotField({ src, className }: Props) {
       cancelAnimationFrame(raf);
       ro.disconnect();
       photo.removeEventListener("load", onLoad);
+      photo.removeEventListener("error", onError);
       document.removeEventListener("pointermove", onMove);
       document.removeEventListener("pointerdown", onDown);
-      scheduleRef.current = () => {};
     };
-  }, [reduced, progress]);
+  }, [reduced]);
 
   return (
     <div ref={rootRef} aria-hidden className={className} data-testid="led-dot-field">
