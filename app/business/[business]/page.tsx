@@ -10,6 +10,7 @@ import { VenueSwipeList } from "@/components/page/venue-swipe-list";
 import { SectionEyebrow } from "@/components/sections/home/section-eyebrow";
 import { BusinessCta, type BusinessCtaAction } from "@/components/sections/business/business-cta";
 import { FlowTimeline } from "@/components/sections/business/flow-timeline";
+import { VisionPortal } from "@/components/sections/business/vision-portal";
 import { SignagePricing } from "@/components/sections/business/signage-pricing";
 import { ServiceGrid } from "@/components/sections/business/service-grid";
 import { titleParts } from "@/components/sections/business/title-parts";
@@ -56,9 +57,9 @@ const CTA: Record<BusinessSlug, { eyebrow: string; title: string; body: string; 
   },
   signage: {
     eyebrow: "ADVERTISING",
-    title: "遊栄ビジョンへの広告掲載をご検討の方へ",
-    body: "掲載する場所や期間、放映する映像の制作まで、目的に合わせてご提案します。まずはお気軽にご相談ください。",
-    actions: [{ href: "/contact?type=signage", label: "広告掲載のご相談" }],
+    title: "国分町の街角で、あなたの広告を光らせませんか。",
+    body: "掲載する場所や期間、放映する映像の制作まで、目的に合わせてご提案します。内容が固まっていなくても、まずはお気軽にご相談ください。",
+    actions: [{ href: "/contact?type=signage", label: "広告掲載を申し込む" }, { href: "#pricing", label: "料金を見る" }],
   },
   digital: {
     eyebrow: "CONTACT",
@@ -94,6 +95,8 @@ export default async function BusinessPage({ params }: PageProps<"/business/[bus
       <BreadcrumbJsonLd items={crumbs} path={path} />
 
       <Intro business={business} />
+
+      {business.pricing && <VisionPortal pricing={business.pricing} photo="/images/source/signage/peace.webp" />}
 
       {venues.length > 0 && (
         <section data-testid="venues" aria-labelledby="venues-heading" className="bg-surface-muted py-24 md:py-36">

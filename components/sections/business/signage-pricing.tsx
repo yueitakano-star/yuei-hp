@@ -14,7 +14,7 @@ const yen = (n: number) => `${n.toLocaleString("ja-JP")}円`;
 export function SignagePricing({ pricing, basePath }: { pricing: Pricing; basePath: string }) {
   const loopMinutes = (pricing.slots * pricing.seconds) / 60;
   return (
-    <section data-testid="pricing" aria-labelledby="pricing-heading" className="bg-surface py-24 md:py-36">
+    <section id="pricing" data-testid="pricing" aria-labelledby="pricing-heading" className="bg-surface py-24 md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal>
           <SectionEyebrow>PRICE</SectionEyebrow>
