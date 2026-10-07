@@ -9,12 +9,13 @@ import { coverRect, dotRadius, gridSpec, luma, pointerBoost, rippleBoost, sweepL
 type Props = { src: string; className?: string };
 
 const out = cubicBezier(...ease.out);
+const inOut = cubicBezier(...ease.inOut);
 
 /**
  * A photo drawn as an LED panel: round dots whose size follows the picture's
- * brightness. On load the light sweeps across once, holds for a beat, then the
- * dots close up and the sharp photo takes over, all on a timer, so it plays
- * out in full whether or not the visitor scrolls. Afterwards the dots come back
+ * brightness. On load the light sweeps across once while the dots already start
+ * closing up into the sharp photo, all on a timer, so it plays out in full
+ * whether or not the visitor scrolls (about 1.5s in total). Afterwards the dots come back
  * only where the pointer is, and a tap sends a ring outwards (the touch
  * counterpart of hover).
  *
@@ -46,10 +47,11 @@ export function LedDotField({ src, className }: Props) {
 
     const sky = getComputedStyle(document.documentElement).getPropertyValue("--color-brand-sky").trim() || "white";
     const life = duration.slow;
-    // Timeline from the first frame: sweep, hold, resolve into the photo.
+    // Timeline from the first frame. Nobody watches the hero for a second, so the photo
+    // starts coming through almost at once, while the light is still sweeping across.
     const sweepEnd = duration.slow;
-    const resolveStart = duration.slow + duration.base;
-    const resolveEnd = resolveStart + duration.slow;
+    const resolveStart = 0;
+    const resolveEnd = duration.slow + duration.fast;
     let raf = 0;
     let disposed = false;
     let grid = gridSpec(1, 1, 14);
@@ -81,7 +83,7 @@ export function LedDotField({ src, className }: Props) {
       if (startedAt === null) startedAt = now;
       const t = (now - startedAt) / 1000;
       sweep = out(Math.min(1, t / sweepEnd));
-      const mix = out(Math.min(1, Math.max(0, (t - resolveStart) / (resolveEnd - resolveStart))));
+      const mix = inOut(Math.min(1, Math.max(0, (t - resolveStart) / (resolveEnd - resolveStart))));
       photo.style.opacity = String(mix);
       if (mix >= 1) root.dataset.ledResolved = "true";
       ripples = ripples.filter((r) => (now - r.at) / 1000 < life);
