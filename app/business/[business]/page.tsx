@@ -11,6 +11,7 @@ import { SectionEyebrow } from "@/components/sections/home/section-eyebrow";
 import { BusinessCta, type BusinessCtaAction } from "@/components/sections/business/business-cta";
 import { FlowTimeline } from "@/components/sections/business/flow-timeline";
 import { VisionPortal } from "@/components/sections/business/vision-portal";
+import { SignageHero } from "@/components/sections/business/signage-hero";
 import { SignagePricing } from "@/components/sections/business/signage-pricing";
 import { ServiceGrid } from "@/components/sections/business/service-grid";
 import { titleParts } from "@/components/sections/business/title-parts";
@@ -85,13 +86,24 @@ export default async function BusinessPage({ params }: PageProps<"/business/[bus
 
   return (
     <>
-      <PageHeader
-        eyebrow={(business.brandEn ?? business.nameEn).toUpperCase()}
-        title={<TitleLines parts={titleParts(title, business.titleDisplay)} />}
-        lead={business.lead ?? business.summary}
-        image={business.heroImage ? { src: business.heroImage, alt: `${title}のイメージ` } : undefined}
-        breadcrumbs={crumbs}
-      />
+      {business.slug === "signage" && business.pricing && business.heroImage ? (
+        <SignageHero
+          eyebrow={(business.brandEn ?? business.nameEn).toUpperCase()}
+          title={<TitleLines parts={titleParts(title, business.titleDisplay)} />}
+          lead={business.lead ?? business.summary}
+          photo={business.heroImage}
+          pricing={business.pricing}
+          breadcrumbs={crumbs}
+        />
+      ) : (
+        <PageHeader
+          eyebrow={(business.brandEn ?? business.nameEn).toUpperCase()}
+          title={<TitleLines parts={titleParts(title, business.titleDisplay)} />}
+          lead={business.lead ?? business.summary}
+          image={business.heroImage ? { src: business.heroImage, alt: `${title}のイメージ` } : undefined}
+          breadcrumbs={crumbs}
+        />
+      )}
       <BreadcrumbJsonLd items={crumbs} path={path} />
 
       <Intro business={business} />
