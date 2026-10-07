@@ -32,9 +32,11 @@ export function VisionPortal({
   // ready yet, remount once it is so the letters are measured in the real face.
   const [fontEpoch, setFontEpoch] = useState(0);
   useEffect(() => {
+    // The first family is the real face; the rest are fallbacks that may never load.
     const family = getComputedStyle(document.documentElement)
       .getPropertyValue("--font-space-grotesk")
-      .trim();
+      .split(",")[0]
+      ?.trim();
     if (!family) return;
     const spec = `${WEIGHT} 100px ${family}`;
     if (document.fonts.check(spec, WORD)) return;

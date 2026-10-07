@@ -146,7 +146,9 @@ export default function GlyphPortal({
     });
     glyph.style.fontFamily = [...available, DEFAULT_FONT].join(",");
     // A pending requested face may also hold WebKit's render loop. Keep that mount static.
-    stalled = available.length < families.length;
+    // Only the first (requested) family decides: later entries are fallbacks, and a fallback
+    // face built on a system font the OS lacks (next/font's local(Arial) on Linux) never loads.
+    stalled = !available.length || !available.includes(families[0] ?? "");
 
     const readInk = () => {
       if (!context) return false;
