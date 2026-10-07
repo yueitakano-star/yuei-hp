@@ -22,6 +22,8 @@ export function SiteHeader() {
   // container stays mounted long enough to animate out.
   const [menuVisible, setMenuVisible] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // True while a hero marked data-header-tone="dark" sits under the (still transparent) header.
+  const [onDarkHero, setOnDarkHero] = useState(false);
   const reduced = useReducedMotion() ?? false;
   const pathname = usePathname();
   const lenis = useLenis();
@@ -44,11 +46,15 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      const hero = document.querySelector("[data-header-tone=dark]");
+      setOnDarkHero(!!hero && hero.getBoundingClientRect().bottom > 80);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   // Move focus into the menu the moment it opens. Kept in its own effect,
   // keyed only on `open`, so a `lenis` instance that mounts after the menu is
@@ -117,6 +123,7 @@ export function SiteHeader() {
   }, [pathname]);
 
   const solid = scrolled || open || menuVisible;
+  const light = onDarkHero && !solid;
   const closedStyle = reduced ? { opacity: 0 } : { clipPath: "inset(0 0 100% 0)" };
   const openStyle = reduced ? { opacity: 1 } : { clipPath: "inset(0 0 0% 0)" };
 
@@ -137,17 +144,17 @@ export function SiteHeader() {
               width={LOGO_W}
               height={LOGO_H}
               preload
-              className="h-8 w-auto md:h-10"
+              className={`h-8 w-auto md:h-10 ${light ? "brightness-0 invert" : ""}`}
             />
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex" aria-label="メインナビゲーション">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className="text-sm font-medium text-ink hover:text-brand-blue">
+              <Link key={item.href} href={item.href} className={`text-sm font-medium ${light ? "text-surface hover:text-brand-sky" : "text-ink hover:text-brand-blue"}`}>
                 {item.label}
               </Link>
             ))}
-            <Link href={contactItem.href} className="rounded-full bg-brand-blue px-5 py-2 text-sm font-medium text-surface hover:bg-brand-navy">
+            <Link href={contactItem.href} className={`rounded-full px-5 py-2 text-sm font-medium ${light ? "bg-surface text-brand-navy hover:bg-brand-sky" : "bg-brand-blue text-surface hover:bg-brand-navy"}`}>
               {contactItem.label}
             </Link>
           </nav>
@@ -161,8 +168,8 @@ export function SiteHeader() {
             aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
           >
-            <span className={`absolute left-2 right-2 h-0.5 bg-ink transition-transform ${open ? "top-1/2 rotate-45" : "top-[14px]"}`} />
-            <span className={`absolute left-2 right-2 h-0.5 bg-ink transition-transform ${open ? "top-1/2 -rotate-45" : "bottom-[14px]"}`} />
+            <span className={`absolute left-2 right-2 h-0.5 ${light ? "bg-surface" : "bg-ink"} transition-transform ${open ? "top-1/2 rotate-45" : "top-[14px]"}`} />
+            <span className={`absolute left-2 right-2 h-0.5 ${light ? "bg-surface" : "bg-ink"} transition-transform ${open ? "top-1/2 -rotate-45" : "bottom-[14px]"}`} />
           </button>
         </div>
       </header>
