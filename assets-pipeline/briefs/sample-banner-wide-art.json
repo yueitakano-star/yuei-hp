@@ -1,0 +1,15 @@
+{
+  "id": "sample-banner-wide-art",
+  "purpose": "ケヤキクリエイト「制作イメージ」: Webバナー（横長）の背景ビジュアル。架空のスイーツ店の夏フェアのサンプル",
+  "page": "/business/digital",
+  "aspect": "21:11",
+  "size": "1680x880",
+  "prompt": "Vivid summer key visual for a fictional dessert shop web banner: a tall glass of colourful fruit shaved ice with mango, strawberry and mint, glistening with water droplets, placed on the right side of the frame against a bright turquoise-to-sky-blue gradient background with soft sun flare. The entire left half is clean uncluttered turquoise space reserved for a headline. Fresh, cheerful, high-end advertising photography.",
+  "negative": [
+    "readable text",
+    "logos",
+    "people faces"
+  ],
+  "variants": 2,
+  "style": "none"
+}

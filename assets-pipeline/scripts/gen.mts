@@ -1,7 +1,7 @@
 import path from "node:path";
 import { spawn } from "node:child_process";
 import { readFileSync, mkdirSync, readdirSync, rmSync, existsSync, createWriteStream, openSync, readSync, closeSync } from "node:fs";
-import { BriefSchema, StyleSchema, composePrompt, buildCodexArgs } from "./lib/brief";
+import { BriefSchema, StyleSchema, composePrompt, buildCodexArgs, styleFor } from "./lib/brief";
 import { resolveCodexCommand, isPng, parseBriefIds, parseConcurrency, runPool } from "./lib/codex";
 
 // Usage: pnpm assets:gen <briefId> [<briefId>...]
@@ -73,7 +73,7 @@ async function run(id: string): Promise<number> {
       if (/^v\d+\.png$/.test(f) || f === "_last.txt") rmSync(path.join(outDir, f), { force: true });
     }
     const expected = Array.from({ length: brief.variants }, (_, i) => `${outDir}/v${i + 1}.png`);
-    const prompt = composePrompt(brief, style, outDir);
+    const prompt = composePrompt(brief, styleFor(brief, style), outDir);
     const args = [...codex!.prefixArgs, ...buildCodexArgs(root, `${outDir}/_last.txt`)];
     const logFile = `${outDir}/codex.log`;
     const log = createWriteStream(logFile, { flags: "w" });

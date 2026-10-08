@@ -1,0 +1,15 @@
+{
+  "id": "sample-square-art",
+  "purpose": "ケヤキクリエイト「制作イメージ」: SNS用の正方形バナーの背景ビジュアル。架空のヨガスタジオのサンプル",
+  "page": "/business/digital",
+  "aspect": "1:1",
+  "size": "1200x1200",
+  "prompt": "Calm bright yoga studio mood image for a fictional studio social media post: a rolled sage-green yoga mat, a small potted plant and a ceramic water cup on a pale wooden floor in soft diffused daylight, seen from slightly above, in muted sage green and warm beige tones. Keep the upper half and the centre quiet and uncluttered for a headline. Serene, airy, minimal lifestyle photography.",
+  "negative": [
+    "readable text",
+    "logos",
+    "people faces"
+  ],
+  "variants": 2,
+  "style": "none"
+}

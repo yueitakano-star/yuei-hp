@@ -15,6 +15,7 @@ import { FlowTimeline } from "@/components/sections/business/flow-timeline";
 import { VisionPortal } from "@/components/sections/business/vision-portal";
 import { SignageHero } from "@/components/sections/business/signage-hero";
 import { SignagePricing } from "@/components/sections/business/signage-pricing";
+import { WorksSamples } from "@/components/sections/business/works-samples";
 import { ServiceGrid } from "@/components/sections/business/service-grid";
 import { titleParts } from "@/components/sections/business/title-parts";
 import { keyakiUrl } from "@/lib/keyaki";
@@ -140,6 +141,7 @@ export default async function BusinessPage({ params }: PageProps<"/business/[bus
 
       {business.pricing && <SignagePricing pricing={business.pricing} basePath={path} />}
       {business.services && <ServiceGrid services={business.services} />}
+      {business.slug === "digital" && <WorksSamples />}
       {business.flow && <FlowTimeline steps={business.flow} />}
 
       <BusinessCta {...cta} className={venues.length > 0 ? "pt-16 md:pt-24" : undefined} />

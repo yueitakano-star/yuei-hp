@@ -1,0 +1,16 @@
+{
+  "id": "sample-flyer-art",
+  "purpose": "ケヤキクリエイト「制作イメージ」: チラシ（縦長）の背景ビジュアル。架空の喫茶店のサンプル",
+  "page": "/business/digital",
+  "aspect": "3:4",
+  "size": "1152x1536",
+  "prompt": "Warm overhead flat-lay photograph for a fictional neighbourhood cafe flyer: a latte with leaf latte art in a handmade ceramic cup, a golden croissant on a small plate, a sprig of small white flowers, on a warm oak table in soft morning window light. Leave generous calm empty space across the top third and the bottom third of the frame for a headline and details. Cozy, inviting, editorial food photography, natural colours, shallow depth of field.",
+  "negative": [
+    "readable text",
+    "signage",
+    "logos",
+    "people faces"
+  ],
+  "variants": 2,
+  "style": "none"
+}

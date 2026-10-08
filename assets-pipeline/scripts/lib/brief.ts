@@ -10,6 +10,8 @@ export const BriefSchema = z.object({
   prompt: z.string().min(1),
   negative: z.array(z.string()).default([]),
   variants: z.number().int().min(1).max(6).default(3),
+  /** "none": skip the YUEI house style (e.g. sample works for fictional clients). Leave unset for the house style. */
+  style: z.enum(["brand", "none"]).optional(),
 });
 export type Brief = z.infer<typeof BriefSchema>;
 
@@ -18,6 +20,15 @@ export const StyleSchema = z.object({
   negative: z.array(z.string()).default([]),
 });
 export type Style = z.infer<typeof StyleSchema>;
+
+/** Used instead of the house style when a brief sets `style: "none"`. */
+export const NEUTRAL_STYLE: Style = {
+  description: "No shared house style: follow the art direction given in the Subject.",
+  negative: ["text", "letters", "logos", "watermark", "low quality"],
+};
+
+/** The style a brief is generated and adopted with. */
+export const styleFor = (brief: Brief, house: Style): Style => (brief.style === "none" ? NEUTRAL_STYLE : house);
 
 export const BRIEF_ID_RE = /^[a-z0-9-]+$/;
 
