@@ -9,6 +9,7 @@ import { InfoTable, type InfoRow } from "@/components/page/info-table";
 import { SwipeGallery } from "@/components/page/swipe-gallery";
 import { VenueSwipeList } from "@/components/page/venue-swipe-list";
 import { Reveal } from "@/components/effects/reveal";
+import { WorksWheel } from "@/components/effects/works-wheel";
 import { SectionEyebrow } from "@/components/sections/home/section-eyebrow";
 import { VenueHero } from "@/components/sections/venue/venue-hero";
 import { venueGallery } from "@/lib/page/gallery";
@@ -175,6 +176,14 @@ export default async function VenuePage({ params }: Props) {
           </div>
         )}
       </section>
+
+      {venue.showcase.length > 0 && (
+        <WorksWheel
+          items={venue.showcase}
+          label={venue.name}
+          imageAlt={`${venue.name}のお料理`}
+        />
+      )}
 
       {/* Information */}
       <section aria-labelledby="venue-info" className="border-t border-line bg-surface py-20 md:py-32">
