@@ -1,7 +1,7 @@
 import path from "node:path";
 import sharp from "sharp";
 import { readFileSync, writeFileSync, existsSync, renameSync } from "node:fs";
-import { BRIEF_ID_RE, BriefSchema, StyleSchema, ManifestEntrySchema, parseVariant, recordAdoption } from "./lib/brief";
+import { BRIEF_ID_RE, BriefSchema, StyleSchema, ManifestEntrySchema, parseVariant, recordAdoption, styleFor } from "./lib/brief";
 import { optimizeImage } from "./lib/optimize";
 
 // Avoid lingering file handles on Windows in a one-shot CLI.
@@ -38,7 +38,7 @@ const manifest = ManifestEntrySchema.array().parse(JSON.parse(readFileSync(manif
 
 const out = await optimizeImage(src, path.join(root, "public/images/generated", id), { maxEdge: 2560 });
 const rel = path.relative(root, out).replace(/\\/g, "/");
-const next = recordAdoption(manifest, brief, style, variant, rel, new Date().toISOString());
+const next = recordAdoption(manifest, brief, styleFor(brief, style), variant, rel, new Date().toISOString());
 const tmp = `${manifestPath}.tmp`;
 writeFileSync(tmp, JSON.stringify(next, null, 2) + "\n");
 renameSync(tmp, manifestPath);

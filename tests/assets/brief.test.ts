@@ -5,6 +5,8 @@ import {
   buildCodexArgs,
   recordAdoption,
   briefHash,
+  NEUTRAL_STYLE,
+  styleFor,
   styleHash,
   parseVariant,
   ManifestEntrySchema,
@@ -99,5 +101,18 @@ describe("brief pipeline", () => {
     expect(parseVariant("v01", 3)).toBeNull();
     expect(parseVariant("2", 3)).toBeNull();
     expect(parseVariant(undefined, 3)).toBeNull();
+  });
+
+  it("style: none の指示書は、社内共通の画風ではなく中立の画風で生成する", () => {
+    const house = { description: "HOUSE-STYLE-MARKER", negative: ["x"] };
+    const own = BriefSchema.parse({ id: "s", purpose: "p", page: "/", aspect: "1:1", size: "10x10", prompt: "q", style: "none" });
+    const plain = BriefSchema.parse({ id: "s", purpose: "p", page: "/", aspect: "1:1", size: "10x10", prompt: "q" });
+    expect(styleFor(plain, house)).toBe(house);
+    expect(styleFor(own, house)).toBe(NEUTRAL_STYLE);
+    expect(composePrompt(own, styleFor(own, house), "/o")).not.toContain("HOUSE-STYLE-MARKER");
+    expect(composePrompt(own, styleFor(own, house), "/o")).toContain("watermark");
+    // Existing briefs have no `style`, so their hashes are unchanged.
+    expect(briefHash(plain)).toBe(briefHash({ ...plain }));
+    expect(JSON.stringify(plain)).not.toContain("style");
   });
 });

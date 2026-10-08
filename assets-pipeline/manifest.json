@@ -46,5 +46,29 @@
     "briefHash": "cd544808b507129c948a5ac5e232eb382cfaaf9d7c3cef241db6c5d94404ca23",
     "styleHash": "dd50fb77238d31b389e3354ae1ec8d71945b58e4c6ad44412ba61db461644a07",
     "adoptedAt": "2026-09-23T15:46:43.694Z"
+  },
+  {
+    "id": "sample-flyer-art",
+    "variant": "v1",
+    "output": "public/images/generated/sample-flyer-art.webp",
+    "briefHash": "00cd9f42fe4b51d190b50534452f164bf96fef3290ea50f276ef5874fa081d06",
+    "styleHash": "acdfdb0a578b1c4fd7c957b48622d3c0d760a139f8b82f64b1838a2d4cec681f",
+    "adoptedAt": "2026-10-08T06:09:43.268Z"
+  },
+  {
+    "id": "sample-banner-wide-art",
+    "variant": "v2",
+    "output": "public/images/generated/sample-banner-wide-art.webp",
+    "briefHash": "088b96baea10b29ec45cc93c6e163149b1a5a1df8e4429c1711ad069af94aef7",
+    "styleHash": "acdfdb0a578b1c4fd7c957b48622d3c0d760a139f8b82f64b1838a2d4cec681f",
+    "adoptedAt": "2026-10-08T06:09:43.999Z"
+  },
+  {
+    "id": "sample-square-art",
+    "variant": "v1",
+    "output": "public/images/generated/sample-square-art.webp",
+    "briefHash": "a776df97517529aa8b6f3a13df562f425672fb874bf090e5c3f20b9947e0e9aa",
+    "styleHash": "acdfdb0a578b1c4fd7c957b48622d3c0d760a139f8b82f64b1838a2d4cec681f",
+    "adoptedAt": "2026-10-08T06:09:44.712Z"
   }
 ]
