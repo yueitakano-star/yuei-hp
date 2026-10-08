@@ -88,6 +88,8 @@ export const VenueFrontmatterSchema = z
       .default({}),
     heroImage: z.string().optional(),
     gallery: z.array(z.string()).default([]),
+    /** Pictures for the scroll wheel (dishes). `title` is optional: the wheel shows only a number without it. */
+    showcase: z.array(z.object({ image: z.string().min(1), title: z.string().min(1).optional() })).default([]),
     order: z.number().int(),
     /** `name` with "|" at the allowed line breaks of the hero heading. */
     titleDisplay: z.string().min(1).optional(),
