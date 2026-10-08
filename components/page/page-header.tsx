@@ -8,6 +8,8 @@ type Props = {
   eyebrow: ReactNode;
   title: ReactNode;
   lead?: ReactNode;
+  /** Buttons under the lead (e.g. a link to an outside site). */
+  actions?: ReactNode;
   image?: { src: string; alt: string };
   breadcrumbs?: BreadcrumbItem[];
 };
@@ -25,7 +27,7 @@ type Props = {
  * overflow-wrap: break-word is only the last resort. The grid columns are
  * min-w-0 so they never grow past the viewport.
  */
-export function PageHeader({ eyebrow, title, lead, image, breadcrumbs }: Props) {
+export function PageHeader({ eyebrow, title, lead, actions, image, breadcrumbs }: Props) {
   return (
     <header data-testid="page-header" className="bg-surface pt-24 md:pt-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
@@ -35,10 +37,11 @@ export function PageHeader({ eyebrow, title, lead, image, breadcrumbs }: Props) 
           <h1 className="min-w-0 text-balance break-keep text-[clamp(1.625rem,calc((100vw-2.5rem)/10.5),2.25rem)] font-bold leading-[1.25] text-ink [overflow-wrap:break-word] md:text-[min(3.75rem,calc((100vw-7rem)/18))] md:leading-[1.2]">
             {title}
           </h1>
-          {lead && (
-            <p className="min-w-0 max-w-xl text-sm leading-[2] text-ink-muted [word-break:auto-phrase] md:pb-2 md:text-base">
-              {lead}
-            </p>
+          {(lead || actions) && (
+            <div className="min-w-0 max-w-xl md:pb-2">
+              {lead && <p className="text-sm leading-[2] text-ink-muted [word-break:auto-phrase] md:text-base">{lead}</p>}
+              {actions && <div className={lead ? "mt-6" : undefined}>{actions}</div>}
+            </div>
           )}
         </div>
       </div>

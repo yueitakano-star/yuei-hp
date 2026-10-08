@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { BreadcrumbJsonLd } from "@/components/seo/json-ld";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { content, isVenueBusiness, type Business, type BusinessSlug } from "@/lib/content";
 import { Reveal } from "@/components/effects/reveal";
@@ -100,6 +102,7 @@ export default async function BusinessPage({ params }: PageProps<"/business/[bus
           eyebrow={(business.brandEn ?? business.nameEn).toUpperCase()}
           title={<TitleLines parts={titleParts(title, business.titleDisplay)} />}
           lead={business.lead ?? business.summary}
+          actions={business.slug === "digital" ? <DigitalHeaderActions /> : undefined}
           image={business.heroImage ? { src: business.heroImage, alt: `${title}のイメージ` } : undefined}
           breadcrumbs={crumbs}
         />
@@ -141,6 +144,41 @@ export default async function BusinessPage({ params }: PageProps<"/business/[bus
 
       <BusinessCta {...cta} className={venues.length > 0 ? "pt-16 md:pt-24" : undefined} />
     </>
+  );
+}
+
+/**
+ * Buttons at the top of the Web・広告制作 page: the KEYAKI CREATE site (only when
+ * NEXT_PUBLIC_KEYAKI_URL is set to an https origin) and the inquiry form.
+ */
+function DigitalHeaderActions() {
+  const keyaki = keyakiUrl();
+  return (
+    <ul className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+      {keyaki && (
+        <li>
+          <a
+            href={keyaki}
+            target="_blank"
+            rel="noopener"
+            data-testid="keyaki-link"
+            className="group inline-flex min-h-12 items-center justify-between gap-6 rounded-full bg-brand-blue px-7 py-3 text-sm font-bold text-surface transition-[color,background-color,transform] duration-hover ease-brand-out hover:bg-brand-navy active:scale-[0.98] md:active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue"
+          >
+            ケヤキクリエイトのサイトを見る
+            <ArrowUpRight aria-hidden className="size-4 transition-transform duration-hover group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span className="sr-only">（新しいタブで開く）</span>
+          </a>
+        </li>
+      )}
+      <li>
+        <Link
+          href="/contact?type=web"
+          className="inline-flex min-h-12 items-center justify-center rounded-full border border-line px-7 py-3 text-sm font-bold text-ink transition-[color,background-color,border-color] duration-hover hover:border-brand-blue hover:text-brand-blue focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue"
+        >
+          制作のご相談
+        </Link>
+      </li>
+    </ul>
   );
 }
 
