@@ -84,6 +84,7 @@ function externalLinks(venue: Venue): { label: string; href: string }[] {
     { label: "Instagram", href: venue.sns.instagram },
     { label: "X", href: venue.sns.x },
     { label: "TikTok", href: venue.sns.tiktok },
+    { label: "YouTube", href: venue.sns.youtube },
     { label: "LINE", href: venue.sns.line },
   ];
   return links.filter((l): l is { label: string; href: string } => Boolean(l.href));

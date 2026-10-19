@@ -83,6 +83,7 @@ export const VenueFrontmatterSchema = z
         instagram: z.url().optional(),
         x: z.url().optional(),
         tiktok: z.url().optional(),
+        youtube: z.url().optional(),
         line: z.url().optional(),
       })
       .default({}),
