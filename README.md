@@ -27,11 +27,23 @@ PR を出す前に、以下をすべて通してください / run all of these 
 pnpm typecheck && pnpm lint && pnpm test && pnpm build && pnpm e2e
 ```
 
+## ホスティング / Hosting
+
+| 項目 | 値 |
+|---|---|
+| GitHub | https://github.com/yueitakano-star/yuei-hp （2026-09-28 に `rocken318/yuei-hp` から移行） |
+| Vercel | `yueitakano-star/yuei-hp` を Import したプロジェクト（`main` への push で本番、PR ごとにプレビューを自動デプロイ） |
+| 本番 URL | https://yuei-hp-navy.vercel.app （独自ドメイン未設定） |
+
+- 旧 Vercel プロジェクト（ken's projects / `yuei-hp`、`yuei-hp.vercel.app`）と旧リポジトリは移行前のもの。新環境の本番公開を確認したら削除してよい。
+- 開発フロー: ブランチ → PR → CI（GitHub Actions）＋ Vercel プレビュー確認 → `main` へマージ。`main` へ直接コミットしない（[`AGENTS.md`](./AGENTS.md)）。
+- 環境変数は Vercel の Settings → Environment Variables で管理する。一覧と意味は [`.env.example`](./.env.example)。
+
 ## 本番公開チェックリスト / Production launch checklist
 
 Vercel の本番環境（Production）に公開する前に確認する。
 
-- [ ] `NEXT_PUBLIC_SITE_URL` を本番ドメインに設定（未設定だと canonical / sitemap / JSON-LD が `https://yuei-hp.vercel.app` を指す。ビルド時に警告が出る）
+- [ ] `NEXT_PUBLIC_SITE_URL` を本番ドメインに設定（未設定だと canonical / sitemap / JSON-LD が `https://yuei-hp-navy.vercel.app` を指す。ビルド時に警告が出る）
 - [ ] お問い合わせメール: `RESEND_API_KEY` / `CONTACT_TO` / `CONTACT_FROM` の 3 つをすべて設定（どれか欠けるとフォームは「準備中」表示のまま）
   - [ ] 送信元ドメインを Resend でドメイン認証（SPF / DKIM）し、`CONTACT_FROM` はそのドメインのアドレスにする（`onboarding@resend.dev` はアカウント所有者にしか届かない）
   - [ ] 本番でテスト送信し、`CONTACT_TO` に届くことを確認
