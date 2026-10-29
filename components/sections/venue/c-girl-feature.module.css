@@ -1,0 +1,138 @@
+.page {
+  background: var(--color-cgirl-paper);
+  color: var(--color-cgirl-night);
+  padding-top: 5rem;
+}
+
+.page a { text-underline-offset: .3em; }
+.page a:focus-visible { outline: 3px solid currentColor; outline-offset: 6px; }
+.hero { position: relative; isolation: isolate; overflow: hidden; background: var(--color-cgirl-night); color: var(--color-cgirl-paper); }
+.art { position: absolute; inset: 0; z-index: -1; }
+.artImage { object-fit: cover; object-position: 65% center; }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--color-cgirl-night) 0%, transparent 82%); }
+.heroInner { width: min(100% - 6rem, 1440px); margin: auto; min-height: 780px; min-height: min(940px, calc(100svh - 5rem)); display: flex; flex-direction: column; }
+.heroTop { display: flex; justify-content: space-between; gap: 2rem; padding-top: 2.5rem; font-size: .875rem; }
+.heroSignature { font-family: var(--font-cgirl-display); font-size: 1.125rem; }
+.heroCopy { flex: 1; padding: clamp(4rem, 7vw, 7.5rem) 0 4rem; }
+.wordmark { margin: 0 0 1.5rem -.035em; font-family: var(--font-cgirl-display); font-size: clamp(7rem, 19vw, 19rem); font-weight: 400; line-height: .93; letter-spacing: -.065em; }
+.heroLead { font-family: var(--font-cgirl-editorial); font-size: clamp(1.6rem, 3.2vw, 2.75rem); line-height: 1.6; letter-spacing: .09em; }
+.heroDescription { margin-top: 1rem; font-size: .9rem; line-height: 1.9; }
+.heroActions { display: flex; align-items: center; gap: 2rem; margin-top: 2.5rem; }
+.primaryLink { display: inline-flex; align-items: center; justify-content: space-between; gap: 2.5rem; min-height: 56px; padding: .9rem 1.5rem; background: var(--color-cgirl-orchid); color: var(--color-cgirl-night); border-radius: var(--radius-cgirl-control); font-weight: 700; }
+.primaryLink:hover { background: var(--color-cgirl-paper); }
+.quietLink { display: inline-flex; align-items: center; min-height: 44px; font-size: .875rem; text-decoration: underline; }
+.heroBottom { display: flex; justify-content: space-between; align-items: end; gap: 2rem; padding: 0 0 2.5rem; }
+.heroBottom p { font-family: var(--font-cgirl-display); font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 1.3; }
+.heroBottom > span { font-size: .8rem; }
+.detailsStrip { background: var(--color-cgirl-orchid); }
+.stripInner { width: min(100% - 6rem, 1440px); margin: auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; padding: 1.4rem 0; font-size: .875rem; }
+.stripInner p { display: flex; align-items: baseline; gap: 1rem; }
+.stripInner p > span { font-size: .75rem; font-weight: 700; }
+.stripInner a { display: inline-flex; gap: .5rem; align-items: center; min-height: 44px; text-decoration: underline; }
+.story { width: min(100% - 6rem, 1344px); margin: auto; padding: 8rem 0 9rem; }
+.storyIntro { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.editorialTitle { font-family: var(--font-cgirl-editorial); font-weight: 500; font-size: clamp(2rem, 4.4vw, 4rem); line-height: 1.6; letter-spacing: .025em; }
+.editorialTitle span { display: block; white-space: nowrap; }
+.storyBody { padding-top: .75rem; max-width: 32rem; font-size: 1rem; line-height: 2.2; }
+.storyBody p + p { margin-top: 1.5rem; }
+.photoComposition { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3.5rem; align-items: start; margin-top: 5rem; }
+.photoFrame { position: relative; overflow: hidden; aspect-ratio: 1.2; background: var(--color-cgirl-night); }
+.photoFrame img { object-fit: cover; }
+.waterPhoto { margin-top: 8rem; }
+.waterPhoto .photoFrame { aspect-ratio: .85; }
+.photoComposition figcaption { margin-top: 1rem; font-size: .8125rem; color: var(--color-cgirl-muted); line-height: 1.8; }
+.visit { background: var(--color-cgirl-night); color: var(--color-cgirl-paper); padding: 7rem max(3rem, calc((100% - 1344px) / 2)); display: grid; grid-template-columns: .85fr 1.15fr; gap: 7rem; }
+.visitEnglish { font-family: var(--font-cgirl-display); color: var(--color-cgirl-orchid); font-size: clamp(3.5rem, 7.2vw, 6.5rem); letter-spacing: -.04em; line-height: 1.02; }
+.visitHeading { margin-top: 2rem; font-family: var(--font-cgirl-editorial); font-size: 1.5rem; font-weight: 500; scroll-margin-top: 7rem; }
+.counterPhoto { position: relative; aspect-ratio: 1.7; margin-top: 3rem; overflow: hidden; }
+.counterPhoto img { object-fit: cover; }
+.visitDetails { padding-top: 1.2rem; }
+.infoList > div { display: grid; grid-template-columns: 6.5rem 1fr; gap: 1.5rem; padding: 1.7rem 0; border-bottom: 1px solid color-mix(in srgb, var(--color-cgirl-paper) 22%, transparent); }
+.infoList > div:first-child { padding-top: 0; }
+.infoList dt { font-size: .8125rem; line-height: 2; }
+.infoList dd { font-size: 1rem; line-height: 1.9; overflow-wrap: anywhere; }
+.infoList dd small { display: block; font-size: .8125rem; margin-top: .3rem; }
+.infoList > div:first-child dd { font-family: var(--font-cgirl-display); font-size: 2rem; line-height: 1.4; }
+.infoList > div:first-child small { font-family: var(--font-sans); }
+.visitActions { display: flex; flex-direction: column; gap: .8rem; margin-top: 2.5rem; }
+.mapLink, .officialLink { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; min-height: 56px; border-radius: var(--radius-cgirl-control); font-weight: 700; font-size: .9rem; }
+.mapLink { background: var(--color-cgirl-paper); color: var(--color-cgirl-night); }
+.officialLink { border: 1px solid var(--color-cgirl-orchid); color: var(--color-cgirl-orchid); }
+.mapLink:hover { background: var(--color-cgirl-orchid); }
+.officialLink:hover { background: var(--color-cgirl-orchid); color: var(--color-cgirl-night); }
+.socialLinks { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+.socialLinks a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; }
+.otherVenues { width: min(100% - 6rem, 1344px); margin: auto; padding: 6rem 0 2rem; }
+.otherHeading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; align-items: center; }
+.otherHeading h2 { font-family: var(--font-cgirl-editorial); font-weight: 500; font-size: clamp(1.3rem, 2.4vw, 2rem); }
+.otherHeading > a { min-height: 44px; display: inline-flex; align-items: center; font-size: .8125rem; text-decoration: underline; }
+.otherGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem; margin-top: 2.5rem; }
+.otherImage { position: relative; aspect-ratio: 2.2; overflow: hidden; background: var(--color-cgirl-night); }
+.otherImage img { object-fit: cover; transition: transform var(--transition-duration-hover) var(--ease-brand-out); }
+.otherLink:hover .otherImage img { transform: scale(1.03); }
+.otherCaption { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.2rem 0; }
+.otherCaption small { font-size: .75rem; display: block; margin-bottom: .3rem; }
+.otherCaption strong { font-family: var(--font-display); font-size: 1.75rem; font-weight: 500; }
+.breadcrumbs { margin-top: 3rem; border-top: 1px solid color-mix(in srgb, var(--color-cgirl-night) 18%, transparent); padding: 2rem 0 .5rem; }
+
+@media (max-width: 899px) {
+  .heroInner { width: calc(100% - 3rem); min-height: 740px; }
+  .heroTop { padding-top: 2rem; }
+  .heroSignature { display: none; }
+  .heroCopy { padding: 5rem 0 3rem; }
+  .wordmark { font-size: clamp(7rem, 23vw, 13rem); }
+  .heroBottom { padding-bottom: 2rem; }
+  .stripInner { width: calc(100% - 3rem); justify-content: start; }
+  .story { width: calc(100% - 3rem); padding: 5rem 0; }
+  .storyIntro { gap: 2rem; }
+  .editorialTitle { font-size: clamp(1.8rem, 4.5vw, 2.8rem); }
+  .photoComposition { gap: 1.5rem; margin-top: 3rem; }
+  .waterPhoto { margin-top: 5rem; }
+  .visit { padding: 5rem 1.5rem; gap: 3rem; grid-template-columns: .8fr 1.2fr; }
+  .infoList > div { grid-template-columns: 5rem 1fr; gap: 1rem; }
+  .otherVenues { width: calc(100% - 3rem); }
+}
+
+@media (max-width: 767px) {
+  .page { padding-top: 4rem; }
+  .heroInner { min-height: 700px; min-height: max(700px, calc(100svh - 4rem)); }
+  .artImage { object-position: 72% top; }
+  .art { opacity: .75; }
+  .hero::after { background: linear-gradient(0deg, var(--color-cgirl-night) 0%, transparent 100%); }
+  .heroTop { font-size: .75rem; }
+  .heroCopy { padding-top: 9rem; }
+  .wordmark { font-size: clamp(6.75rem, 25vw, 10rem); margin-bottom: 1.6rem; }
+  .heroLead { font-size: 1.9rem; }
+  .heroDescription { font-size: .8rem; max-width: 18rem; }
+  .heroActions { flex-wrap: wrap; gap: 1rem 1.5rem; margin-top: 2rem; }
+  .primaryLink { min-height: 52px; padding: .9rem 1.25rem; gap: 1.5rem; font-size: .875rem; }
+  .quietLink { font-size: .8rem; }
+  .heroBottom > span { display: none; }
+  .heroBottom p { font-size: 1.3rem; }
+  .stripInner { padding: 1.5rem 0; gap: .7rem 1.5rem; font-size: .8rem; }
+  .stripInner p { align-items: start; gap: .7rem; line-height: 1.9; }
+  .stripInner p:first-child { width: 100%; }
+  .stripInner p > span { flex-shrink: 0; }
+  .stripInner a { font-size: .75rem; }
+  .storyIntro { grid-template-columns: 1fr; gap: 2rem; }
+  .editorialTitle { font-size: 2.5rem; }
+  .storyBody { padding-top: 0; font-size: .9375rem; }
+  .photoComposition { display: flex; flex-direction: column; gap: 2rem; }
+  .neonPhoto { width: 100%; }
+  .waterPhoto { margin: 0 0 0 auto; width: 82%; }
+  .waterPhoto .photoFrame { aspect-ratio: 1; }
+  .photoComposition figcaption { font-size: .75rem; }
+  .visit { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2.5rem; }
+  .visitEnglish { font-size: clamp(3.5rem, 15vw, 5.5rem); }
+  .visitHeading { margin-top: 1.5rem; }
+  .counterPhoto { margin-top: 2rem; aspect-ratio: 2; }
+  .visitDetails { padding-top: 0; }
+  .infoList > div { padding: 1.3rem 0; grid-template-columns: 4.5rem 1fr; gap: 1rem; }
+  .infoList dt { font-size: .75rem; }
+  .infoList dd { font-size: .875rem; }
+  .mapLink, .officialLink { padding: 1rem; font-size: .8125rem; }
+  .otherVenues { padding-top: 4rem; }
+  .otherGrid { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+  .otherImage { aspect-ratio: 1.8; }
+  .breadcrumbs { margin-top: 2rem; }
+}
