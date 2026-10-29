@@ -95,8 +95,12 @@ test("/recruit says postings will be on each store's site and links stores and c
   const lists = page.getByTestId("venue-list");
   await expect(lists).toHaveCount(2);
   await expect(page.locator('[data-testid="venue-list"] a[href^="/business/nightlife/"]')).toHaveCount(
-    venueCount("nightlife"),
+    venueCount("nightlife") - 1,
   );
+  const cgirl = lists.getByRole("link", { name: /C-girl/ });
+  await expect(cgirl).toHaveCount(1);
+  await expect(cgirl).toHaveAttribute("href", "https://c-girl.yuei-japan.com");
+  await expect(cgirl).toContainText("公式サイトを見る");
   await expect(page.locator('[data-testid="venue-list"] a[href^="/business/dining/"]')).toHaveCount(
     venueCount("dining"),
   );
