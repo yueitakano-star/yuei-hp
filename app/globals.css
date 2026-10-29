@@ -66,6 +66,16 @@
 
   --radius-card: 1.25rem;
 
+  /* C-girl's venue feature: colors and type scoped by its own component. */
+  --color-cgirl-night: #21152e;
+  --color-cgirl-paper: #eee8f7;
+  --color-cgirl-orchid: #f0a9d8;
+  --color-cgirl-muted: #665281;
+  --color-cgirl-white: #ffffff;
+  --font-cgirl-display: var(--font-righteous), var(--font-display);
+  --font-cgirl-editorial: var(--font-shippori), "Yu Mincho", serif;
+  --radius-cgirl-control: 0.375rem;
+
   /* Motion for CSS utilities. Mirrors lib/motion.ts (ease, cssDuration);
      tests/motion.test.ts keeps the two in sync. */
   --ease-brand-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -167,6 +177,11 @@
 
 .bg-brand-gradient {
   background-image: linear-gradient(135deg, var(--color-brand-navy), var(--color-brand-blue) 55%, var(--color-brand-sky));
+}
+
+.cgirl-typography {
+  --font-cgirl-display: var(--font-righteous), var(--font-display);
+  --font-cgirl-editorial: var(--font-shippori), "Yu Mincho", serif;
 }
 
 @media (prefers-reduced-motion: reduce) {

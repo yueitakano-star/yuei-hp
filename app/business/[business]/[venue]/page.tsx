@@ -12,6 +12,7 @@ import { Reveal } from "@/components/effects/reveal";
 import { WorksWheel } from "@/components/effects/works-wheel";
 import { SectionEyebrow } from "@/components/sections/home/section-eyebrow";
 import { VenueHero } from "@/components/sections/venue/venue-hero";
+import { CGirlFeature } from "@/components/sections/venue/c-girl-feature";
 import { venueGallery } from "@/lib/page/gallery";
 import { visibleInfoRows } from "@/lib/page/info-rows";
 import { paragraphs } from "@/lib/page/text";
@@ -111,6 +112,16 @@ export default async function VenuePage({ params }: Props) {
   ];
   // Only for a store with a known address (none yet → nothing emitted).
   const localBusiness = localBusinessJsonLd(venue, path, SITE_URL);
+
+  if (venue.business === "nightlife" && venue.slug === "c-girl") {
+    return (
+      <>
+        <BreadcrumbJsonLd items={crumbs} path={path} />
+        {localBusiness && <JsonLd data={localBusiness} />}
+        <CGirlFeature venue={venue} others={others} breadcrumbs={crumbs} />
+      </>
+    );
+  }
 
   return (
     <>
