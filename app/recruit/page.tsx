@@ -5,6 +5,7 @@ import { content, type Business, type Venue } from "@/lib/content";
 import { Reveal } from "@/components/effects/reveal";
 import { PageHeader } from "@/components/page/page-header";
 import { VenueSwipeList } from "@/components/page/venue-swipe-list";
+import { venueCardHref } from "@/lib/page/venue-link";
 import { SectionEyebrow } from "@/components/sections/home/section-eyebrow";
 import { BusinessCta } from "@/components/sections/business/business-cta";
 
@@ -81,7 +82,7 @@ export default async function RecruitPage() {
                   label={`${business.name}｜全${venues.length}店舗`}
                   columns={venues.length >= 4 ? 4 : 3}
                   venues={venues.map((v) => ({
-                    href: `/business/${business.slug}/${v.slug}`,
+                    href: venueCardHref(v),
                     name: v.name,
                     category: v.category,
                     catchcopy: v.catchcopy,

@@ -8,6 +8,7 @@ import { content, isVenueBusiness, venueBusinessSlugs, type Venue } from "@/lib/
 import { InfoTable, type InfoRow } from "@/components/page/info-table";
 import { SwipeGallery } from "@/components/page/swipe-gallery";
 import { VenueSwipeList } from "@/components/page/venue-swipe-list";
+import { venueCardHref } from "@/lib/page/venue-link";
 import { Reveal } from "@/components/effects/reveal";
 import { WorksWheel } from "@/components/effects/works-wheel";
 import { SectionEyebrow } from "@/components/sections/home/section-eyebrow";
@@ -279,7 +280,7 @@ export default async function VenuePage({ params }: Props) {
             label={business.nameEn.toUpperCase()}
             columns={3}
             venues={others.map((v) => ({
-              href: `/business/${v.business}/${v.slug}`,
+              href: venueCardHref(v),
               name: v.name,
               category: v.category,
               catchcopy: v.catchcopy,

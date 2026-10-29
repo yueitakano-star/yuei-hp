@@ -9,6 +9,7 @@ import { Reveal } from "@/components/effects/reveal";
 import { PageHeader } from "@/components/page/page-header";
 import { TitleLines } from "@/components/page/title-lines";
 import { VenueSwipeList } from "@/components/page/venue-swipe-list";
+import { venueCardHref } from "@/lib/page/venue-link";
 import { SectionEyebrow } from "@/components/sections/home/section-eyebrow";
 import { BusinessCta, type BusinessCtaAction } from "@/components/sections/business/business-cta";
 import { FlowTimeline } from "@/components/sections/business/flow-timeline";
@@ -127,7 +128,7 @@ export default async function BusinessPage({ params }: PageProps<"/business/[bus
               label={business.slug === "signage" ? `全${venues.length}拠点` : `全${venues.length}店舗`}
               columns={venues.length >= 4 ? 4 : 3}
               venues={venues.map((v) => ({
-                href: `/business/${business.slug}/${v.slug}`,
+                href: venueCardHref(v),
                 name: v.name,
                 category: v.category,
                 catchcopy: v.catchcopy,
