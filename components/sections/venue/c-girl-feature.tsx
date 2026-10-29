@@ -72,13 +72,13 @@ export function CGirlFeature({ venue, others, breadcrumbs }: Props) {
         <div className={styles.photoComposition}>
           {neon && (
             <figure className={styles.neonPhoto}>
-              <div className={styles.photoFrame}><Image src={neon} alt="C-girlのネオンサインとソファ席" fill sizes="(min-width: 900px) 60vw, 100vw" /></div>
+              <div className={styles.photoFrame}><Image src={neon} alt="C-girlのネオンサインとソファ席" fill sizes="(min-width: 1440px) 1344px, (min-width: 900px) calc(100vw - 6rem), calc(100vw - 3rem)" /></div>
               <figcaption>ネオンに包まれる、くつろぎの場所。</figcaption>
             </figure>
           )}
           {waterWall && (
             <figure className={styles.waterPhoto}>
-              <div className={styles.photoFrame}><Image src={waterWall} alt="C-girlの光るウォーターカーテンとバーカウンター" fill sizes="(min-width: 900px) 34vw, 80vw" /></div>
+              <div className={styles.photoFrame}><Image src={waterWall} alt="C-girlの光るウォーターカーテンとバーカウンター" fill sizes="(min-width: 1440px) 1344px, (min-width: 900px) calc(100vw - 6rem), calc(100vw - 3rem)" /></div>
               <figcaption>グラスを傾けて、会話をひとつ。</figcaption>
             </figure>
           )}

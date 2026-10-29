@@ -35,16 +35,16 @@
 .editorialTitle span { display: block; white-space: nowrap; }
 .storyBody { padding-top: .75rem; max-width: 32rem; font-size: 1rem; line-height: 2.2; }
 .storyBody p + p { margin-top: 1.5rem; }
-.photoComposition { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3.5rem; align-items: start; margin-top: 5rem; }
-.photoFrame { position: relative; overflow: hidden; aspect-ratio: 1.2; background: var(--color-cgirl-night); }
+.photoComposition { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3.5rem; margin-top: 5rem; }
+.photoFrame { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: var(--color-cgirl-night); }
 .photoFrame img { object-fit: cover; }
-.waterPhoto { margin-top: 8rem; }
-.waterPhoto .photoFrame { aspect-ratio: .85; }
+.neonPhoto, .waterPhoto { min-width: 0; }
+.neonPhoto img { object-position: center 75%; }
 .photoComposition figcaption { margin-top: 1rem; font-size: .8125rem; color: var(--color-cgirl-muted); line-height: 1.8; }
 .visit { background: var(--color-cgirl-night); color: var(--color-cgirl-paper); padding: 7rem max(3rem, calc((100% - 1344px) / 2)); display: grid; grid-template-columns: .85fr 1.15fr; gap: 7rem; }
 .visitEnglish { font-family: var(--font-cgirl-display); color: var(--color-cgirl-orchid); font-size: clamp(3.5rem, 7.2vw, 6.5rem); letter-spacing: -.04em; line-height: 1.02; }
 .visitHeading { margin-top: 2rem; font-family: var(--font-cgirl-editorial); font-size: 1.5rem; font-weight: 500; scroll-margin-top: 7rem; }
-.counterPhoto { position: relative; aspect-ratio: 1.7; margin-top: 3rem; overflow: hidden; }
+.counterPhoto { position: relative; aspect-ratio: 4 / 3; margin-top: 3rem; overflow: hidden; }
 .counterPhoto img { object-fit: cover; }
 .visitDetails { padding-top: 1.2rem; }
 .infoList > div { display: grid; grid-template-columns: 6.5rem 1fr; gap: 1.5rem; padding: 1.7rem 0; border-bottom: 1px solid color-mix(in srgb, var(--color-cgirl-paper) 22%, transparent); }
@@ -87,7 +87,6 @@
   .storyIntro { gap: 2rem; }
   .editorialTitle { font-size: clamp(1.8rem, 4.5vw, 2.8rem); }
   .photoComposition { gap: 1.5rem; margin-top: 3rem; }
-  .waterPhoto { margin-top: 5rem; }
   .visit { padding: 5rem 1.5rem; gap: 3rem; grid-template-columns: .8fr 1.2fr; }
   .infoList > div { grid-template-columns: 5rem 1fr; gap: 1rem; }
   .otherVenues { width: calc(100% - 3rem); }
@@ -117,15 +116,13 @@
   .storyIntro { grid-template-columns: 1fr; gap: 2rem; }
   .editorialTitle { font-size: 2.5rem; }
   .storyBody { padding-top: 0; font-size: .9375rem; }
-  .photoComposition { display: flex; flex-direction: column; gap: 2rem; }
-  .neonPhoto { width: 100%; }
-  .waterPhoto { margin: 0 0 0 auto; width: 82%; }
-  .waterPhoto .photoFrame { aspect-ratio: 1; }
+  .photoComposition { gap: 2rem; }
+  .photoFrame { aspect-ratio: 3 / 2; }
   .photoComposition figcaption { font-size: .75rem; }
   .visit { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2.5rem; }
   .visitEnglish { font-size: clamp(3.5rem, 15vw, 5.5rem); }
   .visitHeading { margin-top: 1.5rem; }
-  .counterPhoto { margin-top: 2rem; aspect-ratio: 2; }
+  .counterPhoto { margin-top: 2rem; }
   .visitDetails { padding-top: 0; }
   .infoList > div { padding: 1.3rem 0; grid-template-columns: 4.5rem 1fr; gap: 1rem; }
   .infoList dt { font-size: .75rem; }
