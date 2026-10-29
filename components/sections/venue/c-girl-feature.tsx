@@ -39,6 +39,12 @@ export function CGirlFeature({ venue, others, breadcrumbs }: Props) {
             <h1 id="venue-heading" className={styles.wordmark}>{venue.name}</h1>
             <p className={styles.heroLead}>夜に、きらめきを。</p>
             <p className={styles.heroDescription}>{venue.catchcopy}</p>
+            {venue.siteUrl && (
+              <a className={styles.recruitLink} href={new URL("/recruit", venue.siteUrl).href} target="_blank" rel="noopener noreferrer">
+                <span className={styles.recruitTitle}><span>オープニング</span><span>キャスト募集中</span></span>
+                <span className={styles.recruitCaption}>募集要項を見る <ArrowUpRight aria-hidden="true" size={17} /><span className="sr-only">（新しいタブで開く）</span></span>
+              </a>
+            )}
             <div className={styles.heroActions}>
               {venue.siteUrl && (
                 <a className={styles.primaryLink} href={venue.siteUrl} target="_blank" rel="noopener noreferrer">
