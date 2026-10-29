@@ -88,7 +88,7 @@ export function Hero() {
         />
 
         <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-5 pb-32 md:justify-center md:px-8 md:pb-0">
-          <motion.div style={{ y: copyY, opacity: copyOpacity }} className="max-w-xl">
+          <motion.div style={{ y: copyY, opacity: copyOpacity }} className="max-w-2xl">
             <LogoAssemble progress={scrollYProgress} stageRef={stageRef} className="w-20 md:w-32" />
             <div className="mt-6 flex items-center gap-4 md:mt-8">
               <p className="font-display text-xs tracking-[0.3em] text-brand-blue md:text-sm">YUEI JAPAN Inc.</p>
@@ -100,11 +100,11 @@ export function Hero() {
             </div>
             <h1
               id="hero-heading"
-              className="mt-4 text-[2.5rem] font-bold leading-[1.2] text-ink md:text-7xl md:leading-[1.15]"
+              className="mt-4 text-[clamp(2rem,10vw,2.5rem)] font-bold leading-[1.2] text-ink md:text-7xl md:leading-[1.15]"
             >
               仙台から、
               <br />
-              つくる。伝える。
+              <span className="whitespace-nowrap">つくる。伝える。</span>
             </h1>
             <motion.div style={{ opacity: leadOpacity }}>
               <motion.p
