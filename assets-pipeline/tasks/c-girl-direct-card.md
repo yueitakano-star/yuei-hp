@@ -10,6 +10,7 @@
 - `app/business/[business]/page.tsx`
 - `app/business/[business]/[venue]/page.tsx`
 - `app/recruit/page.tsx`
+- `e2e/contact.spec.ts`（旧仕様の内部リンク件数チェックを更新）
 - この依頼書
 
 検証: typecheck、lint、test、build、CI E2E。プレビューでC-girlカードの行き先とクリックによる公式サイトへの遷移を確認。
